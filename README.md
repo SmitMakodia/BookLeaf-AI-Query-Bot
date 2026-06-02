@@ -49,23 +49,3 @@ graph TD
     J -->|No| L[Log Query & Trigger Human Escalation]
 ```
 
-## Setup Instructions
-
-1. **Configuration**: Copy `.env.example` to `.env`.
-2. **API Key**: Insert your Google Gemini API key into the `GEMINI_API_KEY` variable inside the `.env` file.
-3. **Execution**: Execute the startup script from your terminal:
-   ```cmd
-   .\start.bat
-   ```
-
-### What `start.bat` Does Automatically:
-The startup script utilizes a Python-based process manager to cleanly handle sub-services. It will:
-- Terminate any orphaned or old background instances.
-- Generate the Python virtual environment and install all dependencies.
-- Re-initialize and seed the SQLite database with mock author status data.
-- Start the local Qdrant server in the background.
-- Index the Knowledge Base document (only if not already indexed).
-- Start the asynchronous FastAPI backend via Uvicorn.
-- Launch the Streamlit dashboard interface directly in your browser.
-
-**To cleanly stop the application, simply press `Ctrl+C` in the terminal where you ran `start.bat`.** The process manager will trap the signal and safely spin down FastAPI, Qdrant, and Streamlit.
